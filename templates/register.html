@@ -1,0 +1,15 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container"> <h2>Criar Nova Conta</h2>
+        <form method="POST" action="/register">
+            <input type="text" name="username" placeholder="Escolha um Usuário" required>
+            <input type="password" name="password" placeholder="Escolha uma Senha" required>
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p><a href="/">Já tem conta? Faça Login</a></p>
+    </div>
+</body>
