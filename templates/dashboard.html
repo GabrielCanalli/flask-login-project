@@ -2,30 +2,34 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Área Restrita</title>
+    <title>Dashboard - Sistema ADS</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Área Restrita 🛡️</h1>
-        
-        <p>Olá, <strong>{{ nome_usuario }}</strong>!</p>
-        <p>Você está logado com sucesso no sistema.</p>
-        
-        <hr>
+        <h1>Área do Aluno</h1>
 
-        <div class="menu-dashboard">
-            <h3>Menu do Sistema</h3>
-            <ul>
-                <li><a href="#">Meu Perfil</a></li>
-                <li><a href="#">Configurações</a></li>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert {{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <p>Bem-vindo ao sistema, <strong>{{ nome_usuario }}</strong>!</p>
+        <hr style="border: 0.5px solid #333; margin: 20px 0;">
+        
+        <div style="text-align: left;">
+            <h4>Acesso Rápido:</h4>
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="#">📅 Minhas Aulas</a></li>
+                <li><a href="#">📊 Notas e Faltas</a></li>
             </ul>
         </div>
-
-        <hr>
-
-        <a href="/logout" class="link-secundario">Sair (Logout)</a>
+        
+        <br>
+        <a href="{{ url_for('logout') }}" style="color: #e74c3c; font-weight: bold;">Sair do Sistema</a>
     </div>
 </body>
 </html>

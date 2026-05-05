@@ -1,15 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro</title>
+    <title>Cadastro - Sistema ADS</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="container"> <h2>Criar Nova Conta</h2>
-        <form method="POST" action="/register">
-            <input type="text" name="username" placeholder="Escolha um Usuário" required>
-            <input type="password" name="password" placeholder="Escolha uma Senha" required>
-            <button type="submit">Cadastrar</button>
+    <div class="container">
+        <h2>Criar Conta</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert {{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="Escolha um usuário" required>
+            <input type="password" name="password" placeholder="Crie uma senha" required>
+            <button type="submit">Finalizar Cadastro</button>
         </form>
-        <p><a href="/">Já tem conta? Faça Login</a></p>
+        <p>Já possui conta? <a href="{{ url_for('login') }}">Voltar para Login</a></p>
     </div>
 </body>
+</html>

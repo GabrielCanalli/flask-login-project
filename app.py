@@ -1,19 +1,25 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import sqlite3
 
 app = Flask(__name__)
-# Chave secreta necessária para usar sessões
-app.secret_key = "chave_muito_segura_123"
+# Chave necessária para que as mensagens (flash) e sessões funcionem
+app.secret_key = "projeto_ads_sucesso"
 
 def get_db():
-    conn = sqlite3.connect("database.db")
+    conn = sqlite3.connect('database.db')
     return conn
 
-# Se você já criou o banco, essa parte pode ser mantida como está
 def init_db():
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)")
+    # Criamos a tabela com UNIQUE no username para evitar duplicatas
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT, 
+            username TEXT UNIQUE, 
+            password TEXT
+        )
+    """)
     conn.commit()
     conn.close()
 
@@ -31,18 +37,20 @@ def login():
         user = cursor.fetchone()
         conn.close()
 
-        # 🚨 PRESTE ATENÇÃO NOS ESPAÇOS ABAIXO 🚨
         if user:
             session["usuario_logado"] = username
+            flash(f"Bem-vindo, {username}!", "success")
             return redirect(url_for('dashboard'))
         else:
-            return "<h1>Erro: Usuário ou senha incorretos!</h1>"
+            flash("Usuário ou senha incorretos!", "error")
+            return redirect(url_for('login'))
 
     return render_template("login.html")
 
 @app.route("/dashboard")
 def dashboard():
     if "usuario_logado" not in session:
+        flash("Acesso negado. Faça login primeiro.", "error")
         return redirect(url_for('login'))
     
     return render_template("dashboard.html", nome_usuario=session["usuario_logado"])
@@ -55,17 +63,23 @@ def register():
 
         conn = get_db()
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
-        conn.commit()
-        conn.close()
-
-        return redirect(url_for('login'))
+        
+        try:
+            cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+            conn.commit()
+            flash("Conta criada com sucesso! Faça login.", "success")
+            return redirect(url_for('login'))
+        except sqlite3.IntegrityError:
+            flash("Este nome de usuário já existe!", "error")
+        finally:
+            conn.close()
 
     return render_template("register.html")
 
 @app.route("/logout")
 def logout():
     session.pop("usuario_logado", None)
+    flash("Sessão encerrada com sucesso.", "success")
     return redirect(url_for('login'))
 
 if __name__ == "__main__":
