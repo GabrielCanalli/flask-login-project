@@ -11,4 +11,4 @@ A aplicação oferece uma base sólida para gerenciamento de usuários, contando
 A aplicação oferece uma base sólida para gerenciamento de usuários, contando com uma interface moderna em *Dark Mode*. O 
 projeto demonstra a integração de um backend Python com um banco de dados para lidar com lógicas de registro, login seguro e proteção de rotas.
 
-##🛠️ Tecnologias 
+##🛠️ Tecnologias Utilizadas 
