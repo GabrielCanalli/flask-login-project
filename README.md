@@ -12,3 +12,4 @@ A aplicação oferece uma base sólida para gerenciamento de usuários, contando
 projeto demonstra a integração de um backend Python com um banco de dados para lidar com lógicas de registro, login seguro e proteção de rotas.
 
 ##🛠️ Tecnologias Utilizadas 
+*
