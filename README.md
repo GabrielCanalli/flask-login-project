@@ -13,4 +13,4 @@ projeto demonstra a integração de um backend Python com um banco de dados para
 
 ##🛠️ Tecnologias Utilizadas
 
-*Backend:* [Python
+*Backend:* [Python]
