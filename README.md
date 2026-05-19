@@ -13,4 +13,4 @@ projeto demonstra a integração de um backend Python com um banco de dados para
 ## 🛠️ Tecnologias Utilizadas
 * **Backend:** [Python] (https://www.python.org/) com [Flask] (https://flask.palletsprojects.com/) (Micro-Framework)
 * **Banco de Dados:** [SQLite3] (https://www.sqlite.org/index.html) (Gerenciamento de Dados Relacionais)
-* **Frontend:** HTML5 e CSS3 (Interface Custo
+* **Frontend:** HTML5 e CSS3 (Interface Custom
