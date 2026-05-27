@@ -15,3 +15,7 @@ projeto demonstra a integração de um backend Python com um banco de dados para
 * **Banco de Dados:** [SQLite3] (https://www.sqlite.org/index.html) (Gerenciamento de Dados Relacionais)
 * **Frontend:** HTML5 e CSS3 (Interface Customizada)
 * **Sessões:** Flask-Session para persistência segura do estado do usuário.
+
+## ✨ Funcionalidades Principais
+
+
