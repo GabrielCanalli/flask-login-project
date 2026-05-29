@@ -17,5 +17,5 @@ projeto demonstra a integração de um backend Python com um banco de dados para
 * **Sessões:** Flask-Session para persistência segura do estado do usuário.
 
 ## ✨ Funcionalidades Principais
-* **Registro de Usuários:** Validação em tempo real para evitar nomes de usuário duplicados usando restrições
+* **Registro de Usuários:** Validação em tempo real para evitar nomes de usuário duplicados usando restrições ****
 
