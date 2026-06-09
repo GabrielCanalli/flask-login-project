@@ -19,4 +19,4 @@ projeto demonstra a integração de um backend Python com um banco de dados para
 ## ✨ Funcionalidades Principais
 * **Registro de Usuários:** Validação em tempo real para evitar nomes de usuário duplicados usando restrições **UNIQUE** do SQL.
 * **Login Seguro:** Verificaçâo de credenciais diretamente no banco de dados SQLite.
-* **Dashboard Protegida:** Rota
+* **Dashboard Protegida:** Rotas
