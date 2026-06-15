@@ -20,3 +20,5 @@ projeto demonstra a integração de um backend Python com um banco de dados para
 * **Registro de Usuários:** Validação em tempo real para evitar nomes de usuário duplicados usando restrições **UNIQUE** do SQL.
 * **Login Seguro:** Verificaçâo de credenciais diretamente no banco de dados SQLite.
 * **Dashboard Protegida:** Rotas acessíveis apenas para usuários autenticados via verificações de sessão.
+*Mensagens de Feedback (Flash):* Alertas visuais dinâmicos para ações de sucesso ou erro (ex: "Acesso Negado", "Bem-vindo").
+*Persistência de Dados:* As informações são mantidas em um arquivo .db local, garantindo que os dados não sejam perdidos ao reiniciar o servidor.
