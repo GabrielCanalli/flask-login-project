@@ -22,3 +22,16 @@ projeto demonstra a integração de um backend Python com um banco de dados para
 * **Dashboard Protegida:** Rotas acessíveis apenas para usuários autenticados via verificações de sessão.
 *Mensagens de Feedback (Flash):* Alertas visuais dinâmicos para ações de sucesso ou erro (ex: "Acesso Negado", "Bem-vindo").
 *Persistência de Dados:* As informações são mantidas em um arquivo .db local, garantindo que os dados não sejam perdidos ao reiniciar o servidor.
+
+## 📂 Estrutura do Projeto
+```text
+flask-login-project/
+├── app.py              # Lógica principal e configuração do banco
+├── database.db         # Arquivo do SQLite (gerado automaticamente)
+├── static/
+│   └── css/
+│       └── style.css   # Estilização Dark Mode e Layout
+└── templates/          # Templates HTML com Jinja2
+    ├── login.html      # Interface de Login
+    ├── register.html   # Interface de Cadastro
+    └── dashboard.html  # Área restrita do usuário
