@@ -37,6 +37,6 @@ flask-login-project/
     └── dashboard.html  # Área restrita do usuário
 ```
 ---
-### 👤 Author
-**Gabriel Canalli**  
-*Systems Analysis and Development Student (3rd Semester)*
+### 👤 Autor
+**Gabriel Canalli**
+*Estudante de Análise e Desenvolvimento de Sistemas (3º Período)*
