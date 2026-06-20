@@ -35,3 +35,8 @@ flask-login-project/
     ├── login.html      # Interface de Login
     ├── register.html   # Interface de Cadastro
     └── dashboard.html  # Área restrita do usuário
+```
+---
+### 👤 Author
+**Gabriel Canalli**  
+*Systems Analysis and Development Student (3rd Semester)*
