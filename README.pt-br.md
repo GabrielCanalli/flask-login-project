@@ -1,0 +1,37 @@
+# flask-login-project
+Sistema de login com Flask (em desensolvimento)
+
+# 🔐 Flask Authentication System (ADS Project)
+Este é um sistema de autenticação full-stack completo, desenvolvido como projeto prático para a graduação em 
+*Análise e Desenvolvimento de Sistemas (ADS)*. O projeto implementa os conceitos fundamentais de desenvolvimento web, persistência em banco de dados relacional e gerenciamento de sessões.
+
+## 🚀 Visão Geral
+A aplicação oferece uma base sólida para gerenciamento de usuários, contando com uma interface moderna em *Dark Mode*. O projeto demonstra a integração de um backend Python com um banco de dados para lidar com lógicas de registro, login seguro e proteção de rotas.
+A aplicação oferece uma base sólida para gerenciamento de usuários, contando com uma interface moderna em *Dark Mode*. O 
+projeto demonstra a integração de um backend Python com um banco de dados para lidar com lógicas de registro, login seguro e proteção de rotas.
+
+## 🛠️ Tecnologias Utilizadas
+* **Backend:** [Python] (https://www.python.org/) com [Flask] (https://flask.palletsprojects.com/) (Micro-Framework)
+* **Banco de Dados:** [SQLite3] (https://www.sqlite.org/index.html) (Gerenciamento de Dados Relacionais)
+* **Frontend:** HTML5 e CSS3 (Interface Customizada)
+* **Sessões:** Flask-Session para persistência segura do estado do usuário.
+
+## ✨ Funcionalidades Principais
+* **Registro de Usuários:** Validação em tempo real para evitar nomes de usuário duplicados usando restrições **UNIQUE** do SQL.
+* **Login Seguro:** Verificaçâo de credenciais diretamente no banco de dados SQLite.
+* **Dashboard Protegida:** Rotas acessíveis apenas para usuários autenticados via verificações de sessão.
+*Mensagens de Feedback (Flash):* Alertas visuais dinâmicos para ações de sucesso ou erro (ex: "Acesso Negado", "Bem-vindo").
+*Persistência de Dados:* As informações são mantidas em um arquivo .db local, garantindo que os dados não sejam perdidos ao reiniciar o servidor.
+
+## 📂 Estrutura do Projeto
+```text
+flask-login-project/
+├── app.py              # Lógica principal e configuração do banco
+├── database.db         # Arquivo do SQLite (gerado automaticamente)
+├── static/
+│   └── css/
+│       └── style.css   # Estilização Dark Mode e Layout
+└── templates/          # Templates HTML com Jinja2
+    ├── login.html      # Interface de Login
+    ├── register.html   # Interface de Cadastro
+    └── dashboard.html  # Área restrita do usuário
