@@ -1,13 +1,19 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+import os
 import sqlite3
+
+from flask import Flask, flash, redirect, render_template, request, session, url_for
+from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 # Chave necessária para que as mensagens (flash) e sessões funcionem
-app.secret_key = "projeto_ads_sucesso"
+app.secret_key = os.getenv("SECRET_KEY", "projeto_ads_sucesso")
+DATABASE_PATH = os.getenv("DATABASE_PATH", "database.db")
+
 
 def get_db():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect(DATABASE_PATH)
     return conn
+
 
 def init_db():
     conn = get_db()
@@ -23,6 +29,19 @@ def init_db():
     conn.commit()
     conn.close()
 
+
+def is_password_hash(password_value):
+    return password_value.startswith(("pbkdf2:", "scrypt:"))
+
+
+def password_matches(stored_password, submitted_password):
+    if not stored_password or not submitted_password:
+        return False
+    if is_password_hash(stored_password):
+        return check_password_hash(stored_password, submitted_password)
+    return stored_password == submitted_password
+
+
 init_db()
 
 @app.route("/", methods=["GET", "POST"])
@@ -33,17 +52,24 @@ def login():
 
         conn = get_db()
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
+        cursor.execute("SELECT id, username, password FROM users WHERE username = ?", (username,))
         user = cursor.fetchone()
-        conn.close()
 
-        if user:
+        if user and password_matches(user[2], password):
+            if not is_password_hash(user[2]):
+                cursor.execute(
+                    "UPDATE users SET password = ? WHERE id = ?",
+                    (generate_password_hash(password), user[0]),
+                )
+                conn.commit()
+            conn.close()
             session["usuario_logado"] = username
             flash(f"Bem-vindo, {username}!", "success")
             return redirect(url_for('dashboard'))
-        else:
-            flash("Usuário ou senha incorretos!", "error")
-            return redirect(url_for('login'))
+
+        conn.close()
+        flash("Usuário ou senha incorretos!", "error")
+        return redirect(url_for('login'))
 
     return render_template("login.html")
 
@@ -65,7 +91,10 @@ def register():
         cursor = conn.cursor()
         
         try:
-            cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+            cursor.execute(
+                "INSERT INTO users (username, password) VALUES (?, ?)",
+                (username, generate_password_hash(password)),
+            )
             conn.commit()
             flash("Conta criada com sucesso! Faça login.", "success")
             return redirect(url_for('login'))
